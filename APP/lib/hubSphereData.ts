@@ -207,11 +207,13 @@ export const flows: HubSphereFlow[] = [
   },
 ];
 
+export const scoredNodes: HubSphereNode[] = rawNodes.map((node) => ({
+  ...node,
+  score: calculateCIV1Score(node.metrics),
+}));
+
 export function getScoredNodes(): HubSphereNode[] {
-  return rawNodes.map((node) => ({
-    ...node,
-    score: calculateCIV1Score(node.metrics),
-  }));
+  return scoredNodes;
 }
 
 export function getAlerts(nodes: HubSphereNode[]): HubSphereAlert[] {
