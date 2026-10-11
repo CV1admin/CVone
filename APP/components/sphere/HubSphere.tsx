@@ -26,7 +26,7 @@ export default function HubSphere() {
 
     async function loadSphereData() {
       try {
-        const response = await fetch("/api/hub/sphere", { cache: "no-store" });
+        const response = await fetch("/api/hub/sphere", { cache: "force-cache" });
         if (!response.ok) throw new Error(`Hub API failed with status ${response.status}`);
         const payload = (await response.json()) as HubSphereResponse;
         if (mounted) setData(payload);
